@@ -1,0 +1,77 @@
+﻿<Application x:Class="EducationalPracticeWpf.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:EducationalPracticeWpf"
+             StartupUri="View/WinMain.xaml">
+    <Application.Resources>
+        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" x:Key="brush_text">
+            <GradientStop Color="#ffffff" Offset="0"/>
+            <GradientStop Color="Black" Offset="2"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" x:Key="brush_text">
+            <GradientStop Color="#ffffff" Offset="0"/>
+            <GradientStop Color="#A2A2A2" Offset="2"/>
+        </LinearGradientBrush>
+        <Style TargetType="Window" x:Key="winMain">
+            <Setter Property="Background" Value="{StaticResource brush_win}"/>
+            <Setter Property="FontFamily" Value="Times New Roman Cyr"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="TextBoxReg">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="{StaticResource brush_text}"/>
+        </Style>
+        <Style TargetType="Label" x:Key="LabelReg">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        <Style TargetType="PasswordBox" x:Key="PassBoxReg">
+            <Setter Property="FontSize" Value="24"/>
+            <!--<Setter Property="FontStyle" Value="Italic"/>-->
+            <Setter Property="Background" Value="{StaticResource brush_text}"/>
+        </Style>
+        <!--Шаблон для кнопки-->
+        <ControlTemplate TargetType="Button" x:Key="myButton">
+            <!--TemplateBinding-Унаследовать из Xaml-->
+            <Border x:Name="buttonBorder" CornerRadius="5"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    Background="{DynamicResource brush_win}"
+                    Height="40"
+                    Width="{TemplateBinding Width}">
+                <ContentControl x:Name="Content_Name" Margin="{TemplateBinding Padding}"
+                                FontStyle="{TemplateBinding FontStyle}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                FontSize="21"
+                                Content="{TemplateBinding Content}"/>
+                <!--тень кнопки-->
+                <Border.Effect x:Uid="ssss">
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="2"/>
+                </Border.Effect>
+            </Border>
+            <!--Действие-->
+            <ControlTemplate.Triggers>
+                <!--указатель мыши находится над элементом-->
+                <Trigger Property="IsMouseOver" Value="true">
+                    <!--<Setter TargetName="Content_Name" Property="FontSize" Value="34"/>-->
+                    <!--<-->
+                    <!--<Setter Property="FontStyle" Value="Italic"/>-->
+                    <Setter TargetName="buttonBorder" Property="Background" Value="#DEDEDE"/>
+                </Trigger>
+                <!--кнопка нажата-->
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter TargetName="buttonBorder" Property="BorderThickness" Value="1"/>
+                    <Setter TargetName="Content_Name" Property="FontSize" Value="20"/>
+                </Trigger>
+                <!--обычный режим-->
+                <Trigger Property="IsEnabled" Value="false">
+                    <!--<Setter TargetName="Content_Name" Property="FontSize" Value="34"/>-->
+                    <Setter TargetName="buttonBorder" Property="Background" Value="#F2F2F2"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style TargetType="DataGrid" x:Key="StyleGride">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Application.Resources>
+</Application>
